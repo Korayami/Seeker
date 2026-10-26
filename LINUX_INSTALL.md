@@ -1,8 +1,20 @@
 # Linux Installation Guide for `seeker`
 
-`seeker` provides packaging for **Arch Linux** (`pacman`, `yay`) and **Debian / Ubuntu** (`apt`).
+`seeker` provides packaging for **Arch Linux** (`pacman`, `yay`) and **Debian / Ubuntu / Raspberry Pi** (`apt`).
 
 Both `seeker` and `seek` commands are installed (`seek` is created as a symlink to `seeker`).
+
+---
+
+## ⚡ Single-Line Install Command (Raspberry Pi / Linux / macOS)
+
+Run this single command on your Raspberry Pi (or any Linux machine):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Korayami/Seeker/main/install.sh | bash
+```
+
+*(Or to install without root permissions to `~/.local/bin`: `curl -fsSL https://raw.githubusercontent.com/Korayami/Seeker/main/install.sh | bash -s -- --user`)*
 
 ---
 

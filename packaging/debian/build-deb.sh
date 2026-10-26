@@ -10,7 +10,8 @@ ARCH="$(uname -m)"
 case "$ARCH" in
     x86_64) DEB_ARCH="amd64" ;;
     aarch64|arm64) DEB_ARCH="arm64" ;;
-    armv7l) DEB_ARCH="armhf" ;;
+    armv7l|armv7|armv8l) DEB_ARCH="armhf" ;;
+    armv6l) DEB_ARCH="armel" ;;
     *) DEB_ARCH="$ARCH" ;;
 esac
 
