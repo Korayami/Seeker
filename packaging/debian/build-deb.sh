@@ -25,10 +25,11 @@ mkdir -p "$PKG_DIR/DEBIAN"
 mkdir -p "$PKG_DIR/usr/bin"
 mkdir -p "$PKG_DIR/usr/share/doc/$PKG_NAME"
 
-echo "==> Compiling seeker binary..."
+echo "==> Compiling seeker & seekui binaries..."
 CC="${CC:-$(command -v gcc || command -v clang || echo cc)}"
 $CC -O3 -Wall -Wextra -pedantic "$ROOT_DIR/seek.c" -o "$PKG_DIR/usr/bin/seeker"
-chmod 755 "$PKG_DIR/usr/bin/seeker"
+$CC -O3 -Wall -Wextra -pedantic "$ROOT_DIR/seekui.c" -o "$PKG_DIR/usr/bin/seekui"
+chmod 755 "$PKG_DIR/usr/bin/seeker" "$PKG_DIR/usr/bin/seekui"
 ln -sf seeker "$PKG_DIR/usr/bin/seek"
 
 echo "==> Creating DEBIAN/control file..."

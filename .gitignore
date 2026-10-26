@@ -1,0 +1,11 @@
+# Binaries
+seek
+seeker
+seekui
+*.o
+*.deb
+*.tar.gz
+*.tar.zst
+dist/
+pkg/
+src/

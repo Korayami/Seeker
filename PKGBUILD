@@ -8,13 +8,15 @@ license=('MIT')
 depends=('glibc')
 makedepends=('gcc' 'make')
 source=("seek.c"
+        "seekui.c"
         "Makefile")
 sha256sums=('SKIP'
+            'SKIP'
             'SKIP')
 
 build() {
     cd "$srcdir"
-    make TARGET=seeker
+    make
 }
 
 package() {

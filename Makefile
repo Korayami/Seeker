@@ -1,35 +1,38 @@
 CC ?= gcc
 CFLAGS ?= -O3 -Wall -Wextra -pedantic
-PREFIX ?= /usr
+PREFIX ?= /usr/local
 BINDIR ?= $(PREFIX)/bin
-TARGET = seeker
+TARGETS = seeker seekui
 ALIAS = seek
 VERSION = 1.0.0
 
-all: $(TARGET)
+all: $(TARGETS)
 
-$(TARGET): seek.c
-	$(CC) $(CFLAGS) seek.c -o $(TARGET)
+seeker: seek.c
+	$(CC) $(CFLAGS) seek.c -o seeker
 
-install: $(TARGET)
+seekui: seekui.c
+	$(CC) $(CFLAGS) seekui.c -o seekui
+
+install: $(TARGETS)
 	mkdir -p $(DESTDIR)$(BINDIR)
-	install -m 755 $(TARGET) $(DESTDIR)$(BINDIR)/$(TARGET)
-	ln -sf $(TARGET) $(DESTDIR)$(BINDIR)/$(ALIAS)
+	install -m 755 seeker $(DESTDIR)$(BINDIR)/seeker
+	ln -sf seeker $(DESTDIR)$(BINDIR)/$(ALIAS)
+	install -m 755 seekui $(DESTDIR)$(BINDIR)/seekui
 
 uninstall:
-	rm -f $(DESTDIR)$(BINDIR)/$(TARGET)
+	rm -f $(DESTDIR)$(BINDIR)/seeker
 	rm -f $(DESTDIR)$(BINDIR)/$(ALIAS)
+	rm -f $(DESTDIR)$(BINDIR)/seekui
 
 clean:
-	rm -f $(TARGET) $(ALIAS) seek *.deb *.tar.gz *.tar.zst
+	rm -f $(TARGETS) $(ALIAS) seek *.deb *.tar.gz *.tar.zst
 	rm -rf dist packaging/deb/pkg
 
-# Build Debian / Ubuntu .deb package
 deb:
 	@chmod +x packaging/debian/build-deb.sh
 	@./packaging/debian/build-deb.sh
 
-# Build Arch Linux package with makepkg
 arch:
 	@cd packaging/arch && makepkg -si
 
